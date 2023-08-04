@@ -1,0 +1,43 @@
+{
+    "replaceConsole": true,
+    "lineDebug": false,
+    "rawMessage": false,
+    "appenders": {
+        "out": {
+            "type": "stdout",
+            "layout": {
+                "type": "json",
+                "separator": ""
+            }
+        },
+        "dateFileRolling": {
+            "type": "dateFile",
+            "filename": "${opts:base}/logs/app-${opts:serverId}.log",
+            "pattern": "yyyy-MM-dd-hh",
+            "maxLogSize": "10M",
+            "backups": 5,
+            "numBackups": 5,
+            "alwaysIncludePattern": true,
+            "keepFileExt": true,
+            "layout": {
+                "type": "json",
+                "separator": ""
+            }
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": [
+                "out"
+            ],
+            "level": "info"
+        },
+        "gate": {
+            "appenders": [
+                "out",
+                "dateFileRolling"
+            ],
+            "level": "info"
+        }
+    }
+}
